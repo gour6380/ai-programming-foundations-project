@@ -99,3 +99,37 @@ Key libraries used:
 - matplotlib
 
 Complete list available in `requirements.txt`
+
+## Future Work & ML Integration
+
+### ML Workflow Adaptations
+
+To extend this workflow for machine learning model training, the following modifications would be needed:
+
+1. **Feature Engineering**: Create additional features from existing variables such as debt-to-income ratio, loan-to-value ratio, and geographic indicators
+2. **Target Variable**: Define a prediction target (e.g., loan approval, default risk, or loan amount prediction)
+3. **Train-Test Split**: Partition the cleaned dataset into training, validation, and test sets using stratified sampling to maintain class distributions
+4. **Feature Scaling**: Normalize or standardize numeric features (income, loan amounts) for algorithms sensitive to feature magnitude
+5. **Categorical Encoding**: Convert categorical variables (loan type, county) to numeric representations using one-hot encoding or embeddings
+
+### Neural Network Preparation
+
+Additional preprocessing steps for neural network models:
+
+1. **Input Normalization**: Scale all numeric features to [0, 1] or standardize to mean=0, std=1 for faster convergence
+2. **Embedding Preparation**: Create embedding layers for high-cardinality categorical features (county names, MSA/MD codes)
+3. **Missing Value Strategy**: Replace remaining missing values with learned embeddings or mean/median imputation rather than deletion
+4. **Sequence Padding**: If incorporating temporal data (e.g., application dates), ensure consistent sequence lengths
+5. **Class Balancing**: Address class imbalance through oversampling, undersampling, or class weights if predicting binary outcomes
+
+### Agentic Automation Potential
+
+This workflow could be enhanced with agentic AI automation in several areas:
+
+1. **Automated Data Profiling**: Deploy AI agents to automatically detect data quality issues, outliers, and distribution shifts across new datasets
+2. **Adaptive Cleaning**: Use LLM-based agents to suggest and apply context-appropriate cleaning strategies based on dataset characteristics
+3. **Intelligent Feature Engineering**: Leverage agentic systems to propose and test novel feature combinations based on domain knowledge
+4. **Automated Visualization Selection**: Deploy agents to select the most informative visualization types based on variable distributions and relationships
+5. **Bias Detection**: Implement AI agents to continuously monitor for potential bias in data collection, processing, and model outputs
+6. **Report Generation**: Automate the creation of analysis summaries and insights using LLM agents that interpret statistical results and generate human-readable explanations
+7. **Pipeline Orchestration**: Use multi-agent systems to coordinate data ingestion, cleaning, analysis, and reporting workflows with minimal human intervention
