@@ -91,6 +91,44 @@ This project uses **Python 3.13**
    - Distribution histograms for applicant income and loan amounts
    - Pie charts for categorical distributions
 
+## Bias & Data Quality Considerations
+
+### Potential Sources of Bias
+
+Poor data cleaning decisions can introduce or amplify bias in several ways:
+
+1. **Missing Data Deletion**
+   - **Issue:** Dropped 526 rows (4.2%) with missing `applicant_income_000s` data
+   - **Bias Risk:** If income missingness correlates with loan denial, applicant demographics, or property location, removing these records creates selection bias that underrepresents certain borrower groups
+   - **Mitigation Applied:** Analyzed missing data patterns before deletion; documented the count and percentage removed; acknowledged limitation in summary
+
+2. **Geographic Concentration Bias**
+   - **Issue:** 46% of records (5,522) come from Anchorage Municipality alone
+   - **Bias Risk:** Urban lending patterns in Anchorage may not represent rural Alaska; models trained on this data would be biased toward urban borrower characteristics
+   - **Mitigation Applied:** Identified and reported geographic concentration explicitly; performed separate analyses by county and MSA/MD status
+
+3. **"Information Not Provided" Categories**
+   - **Issue:** High rates of missing demographic data where applicants chose not to provide race, ethnicity, or sex information
+   - **Bias Risk:** If refusal to provide demographic information correlates with loan outcomes or borrower characteristics, analyses excluding these records mask important patterns and create systematic bias
+   - **Mitigation Applied:** Retained and tracked "Information not provided" as a distinct category rather than treating as missing; reported counts for these categories
+
+4. **Outlier Impact on Summary Statistics**
+   - **Issue:** Extreme values in income and loan amounts (e.g., multimillion-dollar loans, very high incomes)
+   - **Bias Risk:** Using mean instead of median inflates typical borrower profile; outliers disproportionately influence correlation calculations and group comparisons
+   - **Mitigation Applied:** Reported both mean and median values; used visualizations (histograms) to show full distributions; identified right-skew explicitly
+
+5. **Threshold-Based Column Removal**
+   - **Issue:** Automatically dropped all columns with ≥95% missing values (27 columns removed)
+   - **Bias Risk:** Sparse but meaningful variables (e.g., rarely-used loan features) may contain information about underserved populations or special loan programs
+   - **Mitigation Applied:** Used conservative 95% threshold; manually reviewed list of dropped columns; documented which fields were removed
+
+### Additional Data Quality Limitations
+
+- **Originated Loans Only:** Dataset excludes denied applications, preventing analysis of approval patterns and potential lending discrimination
+- **Selection Bias:** Only captures applicants who reached financial institutions, missing those discouraged from applying
+- **Temporal Snapshot:** Single year (2017) prevents trend analysis or detection of changing patterns over time
+- **MSA/MD Structural Missingness:** Missing values in `msamd_name` represent non-metropolitan areas (meaningful missingness), not data quality issues—treated appropriately by creating "Non-MSA/MD" category
+
 ## Dependencies
 
 Key libraries used:
