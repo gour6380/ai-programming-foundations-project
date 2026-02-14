@@ -1,5 +1,7 @@
 # Home Mortgage Disclosure Act (HMDA) 2017 Alaska Mortgage Data - Exploratory Data Analysis
 
+**GitHub Repository:** [https://github.com/gour6380/ai-programming-foundations-project](https://github.com/gour6380/ai-programming-foundations-project)
+
 ## Project Description
 
 This project performs exploratory data analysis on the Home Mortgage Disclosure Act (HMDA) 2017 mortgage dataset for Alaska. The analysis examines borrower, loan, and geographic characteristics for first lien, owner-occupied, 1-4 family homes. The goal is to understand how loan amounts vary with applicant income across different loan purposes (home purchase vs refinance) and loan types (Conventional/FHA/VA).
